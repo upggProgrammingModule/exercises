@@ -1,5 +1,8 @@
 package main
 
+// There are two bugs in this program.  Try to find them.
+// Good luck!
+
 import (
 	"flag"
 	"fmt"
@@ -7,14 +10,44 @@ import (
 	"strings"
 )
 
-func sayIt(word string, repetitions int, shout bool) {
-	var i int = 0
+// adjustVolume returns a string that is the same
+// text as the input string, but with all letters
+// capitalized if shout is true.
+func adjustVolume(word string, shout bool) string {
+	var adjustedText string
 	if shout {
-		word = strings.ToUpper(word)
+		adjustedText = strings.ToUpper(word)
 	}
-	for i=0; i<repetitions; i++ {
-		fmt.Printf("%s\n", word)
+	return adjustedText
+}
+
+// repeatWord will return a string that is equal to the text of word
+// repeated "repetitions" times, with each word separated by a space
+func repeatWord(word string, repetitions int) string {
+	var response string
+	var i int
+
+	if repetitions < 0 {
+		log.Fatal("Can not repeat a word a negative number of times\n")
+	} else if repetitions == 0 {
+		return ""
 	}
+
+	// we are now dealing with the case that we must
+	// repeat the word one, or more, times
+	response = word
+	for i = 1; i <= repetitions; i++ {
+		response = fmt.Sprintf("%s %s", response, word)
+	}
+
+	return response
+}
+
+func sayIt(word string, repetitions int, shout bool) {
+	var textToSay string
+	word = adjustVolume(word, shout) // word is now uppercase if shout was true
+	textToSay = repeatWord(word, repetitions)
+	fmt.Printf("%s\n", textToSay)
 }
 
 func usage() {

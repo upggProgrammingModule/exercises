@@ -3,6 +3,7 @@ A set of exercises to introduce genomics and programming in Go (golang)
 
 # Getting Started
 1. Make a github.com account
+   * Send an email to Craig with your username
 2. Setup github email preferences
    * Detailed instructions: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-email-preferences/setting-your-commit-email-address
    * Click in the top right and go to "Settings"
@@ -39,4 +40,11 @@ A set of exercises to introduce genomics and programming in Go (golang)
 10. Clone the code repository for this course
    * cd go/src/github.com/upggProgrammingModule
    * git clone git@github.com:upggProgrammingModule/exercises.git
-
+11. Run the test program
+   * cd exercises/sayHello
+   * go build
+   * ./sayHello
+12. Find the bugs!
+   * cd ../parrot
+   * go test
+   * edit parrot.go to fix the bugs 
