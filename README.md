@@ -27,24 +27,24 @@ A set of exercises to introduce genomics and programming in Go (golang)
 6. Enjoy the victory of having ssh'ed into your own virtual machine.  All instructions are now for your virtual machine.
 7. You should be able to type "go version" and have it tell you the version of Go (golang) installed.
    * Let me know if this does not work
-7. Make an ssh key for this virtual machine using the same steps in 3.
+8. Make an ssh key for this virtual machine using the same steps in 3.
    * Add this ssh key to your github account: https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
-8. Setup git on this virtual machine:
+9. Setup git on this virtual machine:
    * git config --global user.name "Your Name"
    * git config --global user.email yourGitHubNoReplyEmailAdressFromEarlier
-9. Go used to have a strict way to setup your code.  You no longer need to do things in this strict layout, but we will for the course because it is still the standard and helpfu.
+10. Go used to have a strict way to setup your code.  You no longer need to do things in this strict layout, but we will for the course because it is still the standard and helpfu.
    * In your home directory create a few directories:
    * mkdir -p go/src/github.com/upggProgrammingModule
    * mkdir -p go/pkg
    * mkdir -p go/bin
-10. Clone the code repository for this course
+11. Clone the code repository for this course
    * cd go/src/github.com/upggProgrammingModule
    * git clone git@github.com:upggProgrammingModule/exercises.git
-11. Run the test program
+12. Run the test program
    * cd exercises/sayHello
    * go build
    * ./sayHello
-12. Find the bugs!
+13. Find the bugs!
    * cd ../parrot
    * go test
    * create your own branch: git checkout -b yourNameParrotFix
