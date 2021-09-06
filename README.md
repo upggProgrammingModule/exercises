@@ -47,4 +47,9 @@ A set of exercises to introduce genomics and programming in Go (golang)
 12. Find the bugs!
    * cd ../parrot
    * go test
-   * edit parrot.go to fix the bugs 
+   * create your own branch: git checkout -b yourNameParrotFix
+   * edit parrot.go to fix the bugs
+   * run go test to make sure you fixed them
+   * push your changes to github: git push (follow it's suggested command)
+
+   
