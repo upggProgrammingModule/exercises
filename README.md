@@ -41,7 +41,7 @@ A set of exercises to introduce genomics and programming in Go (golang)
    * cd go/src/github.com/upggProgrammingModule
    * git clone git@github.com:upggProgrammingModule/exercises.git
 12. Run the test program
-   * cd exercises/sayHello
+   * cd exercises/cmd/sayHello
    * go build
    * ./sayHello
 13. Find the bugs!
