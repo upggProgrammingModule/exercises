@@ -17,7 +17,7 @@ func adjustVolume(word string, shout bool) string {
 	var adjustedText string
 	if shout {
 		adjustedText = strings.ToUpper(word)
-	}
+}else{ adjustedText = word}
 	return adjustedText
 }
 
@@ -36,7 +36,7 @@ func repeatWord(word string, repetitions int) string {
 	// we are now dealing with the case that we must
 	// repeat the word one, or more, times
 	response = word
-	for i = 1; i <= repetitions; i++ {
+	for i = 1; i < repetitions; i++ {
 		response = fmt.Sprintf("%s %s", response, word)
 	}
 
