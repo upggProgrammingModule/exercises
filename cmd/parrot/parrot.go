@@ -15,6 +15,7 @@ import (
 // capitalized if shout is true.
 func adjustVolume(word string, shout bool) string {
 	var adjustedText string
+	adjustedText = word
 	if shout {
 		adjustedText = strings.ToUpper(word)
 	} else {
