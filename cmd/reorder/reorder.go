@@ -5,13 +5,24 @@ import (
 	"fmt"
 	"github.com/vertgenlab/gonomics/fileio"
 	"log"
+	"strings"
+	"strconv"
 )
 
 // commaListToInts will take in a string of comma
 // separated numbers and return a slice of ints
 // representing the numbers in the input string
 func commaListToInts(commaList string) []int {
-	return []int{1, 4, 3}
+	var parts []string
+	var n []int
+	var i int
+	parts = strings.Split(commaList, ",")
+	n = make([]int, len(parts))
+	//fmt.Printf("Ugh%v\n",parts)
+	for i=0; i < len(parts); i++ {
+		n[i], _ = strconv.Atoi(parts[i])
+	}
+	return n //[]int{1, 4, 3}
 }
 
 // oneBasedToZeroBased will take a list of numbers in 1-based
@@ -19,10 +30,15 @@ func commaListToInts(commaList string) []int {
 // counting by substracting one from each number in the slice
 func oneBasedToZeroBased(inputNumbers []int) []int {
 	// TODO: write this function
-
+	var i int
+	var adjusted []int
+	adjusted = make([]int, len(inputNumbers))
+	for i=0; i < len(inputNumbers); i++ {
+		adjusted[i] = inputNumbers[i] - 1
+	}
 	// loop through the list of input numbers and
 	// build a new list by subtracting one from each.
-	return []int{0, 3, 2}
+	return adjusted //[]int{0, 3, 2}
 }
 
 // reorderColumns will take in the line of a file, split it into columns
@@ -31,13 +47,27 @@ func oneBasedToZeroBased(inputNumbers []int) []int {
 // columnOrder is zero-based with the first field having an index of zero
 func reorderColumns(line string, delimiter string, columnOrder []int) string {
 	// TODO: write this function
+	var split []string
+	var i int
+	var col string
+	split = strings.Split(line,delimiter)
 
 	//split the string based on the delimiter
 
-	//build a new string while looping through columnOrder
+	//fmt.Printf("index=%v",len(columnOrder))
+	if len(columnOrder) <= 0 {
+		fmt.Printf("ERRER")
+	} else {
+		col = split[columnOrder[0]]
+	}
 
+	//build a new string while looping through columnOrder
+	for i=1; i < len(columnOrder); i++ {
+		col = col + delimiter + split[columnOrder[i]]
+	}
+	//fmt.Printf("col=%v",col)
 	//return the new string you built
-	return "happy"
+	return col
 }
 
 func reorder(inputFilename string, columnDelimiter string, commaListOfFields string, outputFilename string) {
@@ -46,9 +76,13 @@ func reorder(inputFilename string, columnDelimiter string, commaListOfFields str
 	var err error
 	var line string
 	var doneReading bool
-
+	//var oneBased []int
+	//var zeroBased []int
 	// TODO: write logic to turn the string of 1-based comma-separated indices
 	// into a slice of 0-based ints
+	//oneBased = commaListToInts(commaListOfFields)
+	//zeroBased = oneBasedToZeroBased(oneBased)
+
 
 	for line, doneReading = fileio.EasyNextRealLine(inFile); !doneReading; line, doneReading = fileio.EasyNextRealLine(inFile) {
 		// TODO: write the code for inside this loop that parses each line of the input file
