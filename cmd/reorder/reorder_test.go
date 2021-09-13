@@ -34,7 +34,7 @@ var reorderTests = []struct {
 	expected string
 }{
 	{"hello:how:are:you", ":", []int{0, 2}, "hello:are"},
-	{"duke_university_blue_devils", "_", []int{3, 4, 1}, "blue_devils_duke"},
+	{"duke_university_blue_devils", "_", []int{2, 3, 0}, "blue_devils_duke"},
 }
 
 func TestCommaList(t *testing.T) {
@@ -55,4 +55,13 @@ func TestOneToZero(t *testing.T) {
 			t.Errorf("Error when converting to zero based. input:%v expected:%v actual:%v", curr.input, curr.expected, actual)
 		}
 	}
+}
+func Testreorder(t *testing.T) {
+        var actual string
+        for _, curr := range reorderTests {
+                actual = reorderColumns(curr.line,curr.delim, curr.order)
+                if !reflect.DeepEqual(actual, curr.expected) {
+                        t.Errorf("Error when converting to zero based. input:%v expected:%v actual:%v", curr.line, curr.expected, actual)
+                }
+        }
 }

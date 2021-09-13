@@ -5,24 +5,39 @@ import (
 	"fmt"
 	"github.com/vertgenlab/gonomics/fileio"
 	"log"
+	"strings"
+	"strconv"
 )
 
 // commaListToInts will take in a string of comma
 // separated numbers and return a slice of ints
 // representing the numbers in the input string
 func commaListToInts(commaList string) []int {
-	return []int{1, 4, 3}
+	tmp := strings.Split(commaList,",")
+	values := make([]int,0, len(tmp))
+	for _, raw := range tmp{
+		v, err:= strconv.Atoi(raw)
+		if err != nil{
+		log.Print(err)
+		continue
+		}
+		values = append(values, v)
+	}
+	return values
 }
 
 // oneBasedToZeroBased will take a list of numbers in 1-based
 // counting and return the same list of numbers converted to 0-based
 // counting by substracting one from each number in the slice
 func oneBasedToZeroBased(inputNumbers []int) []int {
+	for i := 0; i<len(inputNumbers); i++ {
+		inputNumbers[i] = inputNumbers[i] -1
+	}
 	// TODO: write this function
 
 	// loop through the list of input numbers and
 	// build a new list by subtracting one from each.
-	return []int{0, 3, 2}
+	return inputNumbers
 }
 
 // reorderColumns will take in the line of a file, split it into columns
