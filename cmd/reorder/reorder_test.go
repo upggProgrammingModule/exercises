@@ -34,8 +34,17 @@ var reorderTests = []struct {
 	expected string
 }{
 	{"hello:how:are:you", ":", []int{0, 2}, "hello:are"},
-	{"duke_university_blue_devils", "_", []int{3, 4, 1}, "blue_devils_duke"},
+	{"duke_university_blue_devils", "_", []int{2, 3, 0}, "blue_devils_duke"},
 }
+
+//var reorderTest = []struct {
+  //      inputFilename     string
+    //    columnDelimiter    string
+      //  commaListOfFields   string
+       // outputFilename	string
+//}{
+  //      {"test.txt", "\t", "1,4,3,2", "test_out.txt"},
+//}
 
 func TestCommaList(t *testing.T) {
 	var actual []int
@@ -56,3 +65,14 @@ func TestOneToZero(t *testing.T) {
 		}
 	}
 }
+
+func TestReorder(t *testing.T) {
+        var actual string
+        for _, curr := range reorderTests {
+                actual = reorderColumns(curr.line, curr.delim, curr.order)
+                if !reflect.DeepEqual(actual, curr.expected) {
+                        t.Errorf("Error when reordering columns. input:%s expected:%s actual:%s", curr.line, curr.expected, actual)
+                }
+        }
+}
+//reorder(test.txt, "\t", "1,4,3,2",test_out.txt)
