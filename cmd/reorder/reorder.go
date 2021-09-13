@@ -7,6 +7,7 @@ import (
 	"log"
 		"strings"
 		"strconv"
+		
 )
 
 // commaListToInts will take in a string of comma
@@ -14,15 +15,15 @@ import (
 // representing the numbers in the input string
 func commaListToInts(commaList string) []int {
 	
-	commaSlice := strings.Split(CommaList, ",")
+	commaSlice := strings.Split(commaList, ",")
 	var new_list []int
 	new_list =make([]int, len(commaSlice))
 	var i int
 	for i=0; i < len (commaSlice); i++ {
-	n,_ = strconv.Atoi (commaSlice [i])
+	n,_ := strconv.Atoi (commaSlice [i])
 	new_list[i] = n
 	}
-	return []int{new_list}
+	return new_list
 
 }
 
@@ -35,23 +36,38 @@ func oneBasedToZeroBased(inputNumbers []int) []int {
 
 	// loop through the list of input numbers and
 	// build a new list by subtracting one from each.
-	return []int{0, 3, 2}
+	var zero_based []int
+	zero_based = make([]int,len(inputNumbers))
+	var i int
+	for i = 0; i < len(inputNumbers); i++{
+	zero_based[i] = inputNumbers[i] - 1
+}
+        return zero_based
 }
 
+
 // reorderColumns will take in the line of a file, split it into columns
-// based on delimiter, and then put a subset of the columns back into
+// based on delimiter, and then put a subset of the columns back ino
 // a string based on the order of their indices in columnOrder
 // columnOrder is zero-based with the first field having an index of zero
 func reorderColumns(line string, delimiter string, columnOrder []int) string {
 	// TODO: write this function
 
 	//split the string based on the delimiter
-
+	lineSlice := strings.Split(line, delimiter)
 	//build a new string while looping through columnOrder
 
 	//return the new string you built
-	return "happy"
+	var i int
+	var new_line string  
+	for i=0; i < len(columnOrder); i++ {
+	new_line = new_line + lineSlice[columnOrder[i]]
 }
+        //return the new string you built
+        return new_line
+
+}
+
 
 func reorder(inputFilename string, columnDelimiter string, commaListOfFields string, outputFilename string) {
 	var inFile *fileio.EasyReader = fileio.EasyOpen(inputFilename)
@@ -66,7 +82,7 @@ func reorder(inputFilename string, columnDelimiter string, commaListOfFields str
 	for line, doneReading = fileio.EasyNextRealLine(inFile); !doneReading; line, doneReading = fileio.EasyNextRealLine(inFile) {
 		// TODO: write the code for inside this loop that parses each line of the input file
 		// you will want to use the reorderColumns function above to modify the line you just read in
-		fmt.Fprintf(outFile, "%s\n", line)
+		fmt.Println(outFile, "%s\n", reorderColumns (line, columnDelimiter, oneBasedToZeroBased(commaListToInts(commaListOfFields))))
 	}
 
 	err = inFile.Close()
