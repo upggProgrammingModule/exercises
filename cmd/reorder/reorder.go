@@ -45,9 +45,9 @@ func reorderColumns(line string, delimiter string, columnOrder []int) string {
 	lineSlice := strings.Split(line, delimiter)
 	//build a new string while looping through columnOrder
 	var lineNew string
-	for _, j := range columnOrder {
+	for i, j := range columnOrder {
 		lineNew = lineNew + lineSlice[j]
-		if j != len(columnOrder)-1 {
+		if i != len(columnOrder)-1 {
 			lineNew = lineNew + delimiter
 		}
 	}
