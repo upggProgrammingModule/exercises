@@ -57,7 +57,7 @@ func reorderColumns(line string, delimiter string, columnOrder []int) string {
 
 	//fmt.Printf("index=%v",len(columnOrder))
 	if len(columnOrder) <= 0 {
-		fmt.Printf("ERRER")
+		fmt.Printf("ERROR")
 	} else {
 		col = split[columnOrder[0]]
 	}
