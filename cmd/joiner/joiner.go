@@ -104,6 +104,16 @@ func usage() {
 	flag.PrintDefaults()
 }
 
+func splitAwayFirstCol(line string) (string, string) {
+	var columns []string
+	var first string
+	var everythingElse string
+	columns = strings.Split(line, ":")
+	first = columns [0]
+	everythingElse = strings.Join(columns [1:], ":")
+	return first, everythingElse
+
+
 func main() {
 	var expectedNumArgs int = 3
 	var delim *string = flag.String("delimiter", "\t", "The string that delimits columns in the input")
