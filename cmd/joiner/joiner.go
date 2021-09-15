@@ -113,6 +113,31 @@ func splitAwayFirstCol(line string) (string, string) {
 	everythingElse = strings.Join(columns [1:], ":")
 	return first, everythingElse
 
+func reorder(inputFilename string, columnDelimiter string, commaListOfFields string, outputFilename string) {
+        var inFile *fileio.EasyReader = fileio.EasyOpen(inputFilename)
+        var outFile *fileio.EasyWriter = fileio.EasyCreate(outputFilename)
+        var err error
+        var line string
+        var doneReading bool
+
+        // TODO: write logic to turn the string of 1-based comma-separated indices
+        // into a slice of 0-based ints
+
+        for line, doneReading = fileio.EasyNextRealLine(inFile); !doneReading; line, doneReading = fileio.EasyNextRealLine(inFile) {
+                // TODO: write the code for inside this loop that parses each line of the input file
+                // you will want to use the reorderColumns function above to modify the line you just read in
+                fmt.Println(outFile, "%s\n", reorderColumns (line, columnDelimiter, oneBasedToZeroBased(commaListToInts(commaListOfFields))))
+        }
+
+        err = inFile.Close()
+        if err != nil {
+                log.Fatalf("Error: %s\n", err)
+        }
+        err = outFile.Close()
+        if err != nil {
+                log.Fatalf("Error: %s\n", err)
+        }
+}
 
 func main() {
 	var expectedNumArgs int = 3
